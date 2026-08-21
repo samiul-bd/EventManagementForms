@@ -1,0 +1,30 @@
+﻿
+CREATE TABLE [dbo].[Customers]
+(
+	[CustomerId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	CustomerName varchar(25) NOT NULL,
+	MobileNo varchar(11) NOT NULL
+	
+	
+)
+CREATE TABLE [dbo].[Events]
+(
+	[EventId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	EventName varchar(30) NOT NULL,
+	Budget decimal NOT NULL,
+	ImageUrl varchar(250),
+	StartDate Datetime NOT NULL,
+	EndDate Datetime,
+	IsMultipleProgramEvent bit NOT NULL,
+	CustomerId int REFERENCES Customer(CustomerId)
+
+)
+CREATE TABLE [dbo].[Programs]
+(
+	[ProgramsId] INT NOT NULL PRIMARY KEY IDENTITY(200,1),
+	ProgramsName varchar(20) NOT NULL,	
+	EventId int NOT NULL REFERENCES Events(EventId),	
+	Duration int
+	
+)
+
